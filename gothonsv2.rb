@@ -78,13 +78,81 @@ class Game
       Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr.
       The Gothon stops, tries not to laugh, then busts out laughing and can't move.
       While he's laughing you run up and shoot him square in his head.
-      putting him down, then jump throught the Weapon Armory door.
+      putting him down, then jump out of the door.
+      PARAGRAPH
+      return :round_table
+
+    else
+      puts "DOES NOT COMMUTE!"
+      return :central_corridor
+    end
+  end
+
+  def round_table()
+    puts <<-PARAGRAPH
+    The door you jumped from took you to a bad place.
+    The Round Table room, here you see 4 Gothons
+    they are searching for survivors.
+    What do you do now?
+    PARAGRAPH
+
+    prompt(); action = gets.chomp()
+    
+    if action.include? "fire"
+      puts <<-PARAGRAPH
+      You bring out your shooter and take cover
+      "Zoop!" you aim and shoot towards two Gothons, 
+      charging up your shot to the maximum.
+      Both of them burn down to ashes.
+      The remaining two start searching for you,
+      but you carefully maintain your cover.
+      What next?
+      PARAGRAPH
+      
+      prompt(); fire = gets.chomp()
+
+      if fire.include? "distract"
+        puts <<-PARAGRAPH
+        You throw your gun holder towards the wall,
+        the Gothons get curious and start moving towards
+        the wall. You find the best moment to kill them.
+        You stand up, charge your gun and BANG!
+        Gothons blast in front of your eyes.
+        PARAGRAPH
+        return :laser_weapon_armory
+
+      elsif fire.include? "shoot"
+        puts <<-PARAGRAPH
+        You stand up and tell them to stop moving 
+        and get their hands up, aiming your gun towards them.
+        They start laughing at you and you shoot towards them,
+        the beam of energy gazes past it's left ear.
+        The other Gothon shoots you and eats your head.        
+        PARAGRAPH
+        return :death
+      end
+
+    elsif action.include? "joke"
+      puts <<-PARAGRAPH
+      You tell the same old joke you tried before,
+      lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr.
+      All of then turn towards you, one of them laughes
+      The rest three shoot your brains out!
+      PARAGRAPH
+      return :death
+
+    elsif action.include? "cheat"
+      puts <<-PARAGRAPH
+      "AOTNNIGAMII OOHHLCIDD!!"
+      You cast a very powerful spell , Gothons freeze!
+      Accurately aiming towards their head,
+      you headshot them to death!! HAHA!
       PARAGRAPH
       return :laser_weapon_armory
 
     else
       puts "DOES NOT COMMUTE!"
-      return :central_corridor
+      return :round_table
     end
   end
 
@@ -174,7 +242,8 @@ class Game
       get off this tin can.
       PARAGRAPH
       return :escape_pod
-      else
+      
+    else
       puts "DOES NOT COMPUTE!"
       return :the_bridge
     end
